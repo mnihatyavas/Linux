@@ -1,0 +1,374 @@
+Linux Commands Cheat Sheet
+-----------------------------------
+1. Hardware Information
+dmesg
+cat /proc/cpuinfo
+free -h
+lshw
+lsblk
+lspci -tv
+lsusb -tv
+dmidecode
+hdparm -i /dev/[disk]
+hdparm -tT /dev/[disk]
+badblocks -s /dev/[disk]
+tar cf [file.tar] [file]
+tar xf [file.tar]
+tar czf [file.tar.gz]
+gzip [file]
+
+Show bootup messages
+Show CPU information
+Show free and used memory
+Hardware configuration info
+Block devices info
+Tree-diagram of PCI devices
+Tree-diagram of USB devices
+Show BIOS hardware info
+Show disk data info
+Disk read speed test
+Unreadable blocks tes
+
+2. File Compression
+tar cf [file.tar] [file]
+tar xf [file.tar]
+tar czf [file.tar.gz]
+gzip [file]
+
+Create a tar file from a file
+Extract archived file
+Create a gzip tar file
+Create a gz compressed file
+
+3. Package Installation
+yum search [keyword]
+yum info [package]
+yum install [package.rpm]
+dnf install [package.rpm]
+rpm -i [package.rpm]
+rpm -e [package.rpm]
+apt install [package]
+tar zxvf [source_code.tar.gz]
+cd [source_code]
+./configure
+make
+make install
+
+nd a package by a keyword
+Package info & summary
+Install a package with YUM
+Install a package with DNF
+Install a local rpm package
+Remove an rpm package
+Install a package with APT
+Install software from source
+code
+
+4. SSH Login
+ssh [user]@[host]
+ssh [host]
+ssh -p [port] [user]@[host]
+telnet [host]
+
+Connect to host as user
+Connect to host via port 22
+Use a non-default port
+Connect to Telnet via port 23
+
+5. Searching
+grep [pattern] [file]
+grep -r [pattern] [directory]
+locate [name]
+find [/location] -name [x]
+find [/location] -size [+100M]
+
+Search for a pattern in a file
+Search a pattern recursively
+Search for files & directories
+List items beginning with [x]
+List items larger than 100MB
+
+6. File Transfer
+scp [file.txt] [server/tmp]
+rsync -a [/location] [/backup/]
+
+Create a tar file from a file
+Sync the contents of a
+location with the backup
+directory
+
+7. Process Related
+ps
+pstree
+pmap
+top
+kill [process_id]
+pkill [process_name]
+killall [process_name]
+bg
+fg
+fg [job]
+lsof
+trap "[commands]" [signal]
+wait
+nohup [command] &
+
+Show active process snapshot
+Show processes as a tree
+Show process memory usage
+Show all running processes
+Kill the process by ID
+Kill the process by name
+Kill all processes by name
+List background processes
+Most recent suspended job to
+foreground
+Bring [job] to foreground
+List files opened by processes
+Execute command on signal
+Pause terminal until process
+completes
+Run a process in background
+
+8. File Permission
+chmod 777 [file]
+chmod 755 [file]
+chmod 766 [file]
+chown [user] [file]
+chown [user]:[group] [file]
+
+File read, write, execute
+permissions to everyone
+Full permission to owner,
+read permissions for others
+Full permission to owner,
+read and write for others
+Change file ownership
+Change file owner and group
+
+9. File Commands
+ls
+ls -a
+pwd
+mkdir [name]
+rm [file]
+rm -r [directory]
+rm -rf [directory]
+cp [file1] [file2]
+cp -r [directory1] [directory2]
+mv [filename1] [filename2]
+ln -s [/path/file] [link]
+touch [file]
+more [file]
+head [file]
+tail [file]
+gpg -c [file]
+gpg [file.gpg]
+wc
+ls | xargs wc
+cut -d[delimiter] [file]
+[data] | cut -d[delimiter]
+awk '[pattern] {print $0}' [file]
+shred -u [file]
+diff [file1] [file2]
+source [file]
+[command] | tee [file]
+>/dev/null
+
+List files in the directory
+List files, include hidden files
+Show current directory
+Create a directory
+Remove a file
+Recursively remove directory
+Force remove directory
+Copy file1 to file2
+Copy directory1 to directory2
+Rename a file
+Create symbolic link to file
+Create a new file
+Show file contents
+Show first 10 lines of a file
+Show last 10 lines of a file
+Encrypt a file
+Decrypt a file
+Count words/lines/bytes
+Words/lines/bytes in directory
+Cut file section and print
+Cut data section and print
+Print lines matching a pattern
+Overwrite and delete a file
+Compare two files
+Compile from source code
+Store command output to a
+file, skip terminal output
+
+10. Users and Groups
+id
+last
+who
+w
+groupadd [group]
+adduser [user]
+usermod -aG [group] [user]
+userdel [user]
+usermod
+chgrp [group] [directory]
+
+Show active user details
+Show last system logins
+Show who is logged in
+Show logged users and activity
+Add a new group
+Add a new user
+Add user to group
+Delete a user
+Modify user information
+Change directory group
+
+11. System Management and Info
+uname -r
+uname -a
+uptime
+hostname
+hostname -l
+last reboot
+date
+timedatectl
+cal
+whoami
+finger [username]
+ulimit [flags] [limit]
+shutdown [hh:mm]
+shutdown now
+modprobe [module-name]
+
+Show system information
+Show kernel release info
+Show uptime length/avg. load
+Show system hostname
+Show system IP address
+Show reboot history
+Show current time and date
+Manage the system clock
+Show current day and month
+Show the current user
+Show user information
+View or limit system resources
+Schedule a system shut down
+Shut down immediately
+Add a new kernel module
+
+12. Network Management
+ip addr show
+ip address add [ip]
+ifconfig
+netstat -pnltu
+netstat -nutlp
+whois [domain]
+dig [domain]
+dig -x [host]
+dig -x [ip]
+host [domain]
+hostname -l
+wget [file_url]
+curl -O [file_url]
+nslookup [domain]
+
+Show IP addresses
+Assign IP address to interface
+Show all network interfaces
+Show active listening ports
+Show tcp and udp ports
+Show domain information
+Show domain's DNS info
+Domain reverse lookup
+IP address reverse lookup
+IP lookup for a domain
+Show local IP address
+Download a file from url
+Download a file from url
+Show domain information
+
+13. Directory Navigation
+cd ..
+cd
+cd [/location]
+
+Move up one level
+Change directory to $HOME
+Change to a specified
+directory
+
+14. Disk Usage
+df -h
+df -l
+fdisk -l
+du -ah
+du -sh
+findmnt
+mount [device] [mount_point]
+
+Show free space on system
+Show free nodes on system
+Disk partition types and sizes
+Show disk usage for all files
+Show disk usage for current
+directory
+Show target mount point
+Mount a device
+
+15. Variables
+let "[variable]=[value]"
+export [variable]
+declare [variable]="[value]"
+set
+echo $[variable]
+
+Assign integer value to var
+Export a Bash variable
+Declare a Bash variable
+List variables and functions
+Display value of the variable
+
+16. Shell Command Management
+alias [alias]='[command]'
+watch -n [interval] [command]
+sleep [interval] && [command]
+at [hh:mm]
+man [command]
+history
+
+Create command alias
+Set interval to run a command
+Postpone command execution
+Schedule a job
+Display command manual
+Print command history
+
+17. Keyboard Shortcuts
+Ctrl + C
+Ctrl + Z
+Ctrl + W
+Ctrl + U
+Ctrl + K
+Ctrl + Y
+Ctrl + R
+Ctrl + O
+Ctrl + G
+!!
+exit
+
+Kill current process
+Stop process (can be resumed)
+Cut the word before the cursor
+Cut part of the line before the
+cursor
+Cut part of the line after the
+cursor
+Paste from clipboard
+Recall last command
+Run the recalled command
+Exit command history
+Repeat the last command
+Log out of the session

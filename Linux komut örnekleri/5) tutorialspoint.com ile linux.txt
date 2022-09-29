@@ -1,0 +1,209 @@
+tutorialspoint.com ile Unix-Linux
+--------------------------------------
+1. Baþlarken
+    1.1. What is Unix/Linux nedir?
+        1969'da AT&T Bell bilgiiþlem laboratuarýnda Ken Thomson ve ekibi tarafýndan geliþtirilen, çok-kullanýcýlý ve çok-görevli "kernel" iþletim sistemidir. Komut satýrýyla kernelin iliþkisini "shell" kabuk yorumlayýcý saðlar. Linux, Unix'in ücretsiz bir çeþididir.
+    1.2. Unix Mimarisi
+        Bilgisayar donanýmýný kernel yönetir; üzerinde komut yorumlayýcý kabuk-lar (shell, bash, C-shell vb), sonrasýnda da unix komutlarý, uygulama programlarý, veritabaný, eposta, dosya-dizin sistemi vb gelir.
+    1.3. Systemin Açýlýþý
+        Bilgisayarýnýzda unix kuruluysa, açýlýr açýlmaz kontrolu ele alýr, sizden (yetkiniz dahilinde) sisteme giriþ iþlemini baþlatýr.
+    1.4. Unix'e Giriþ
+        Sizden sisteme giriþ için kullanýcý kimliðinizi ve önceden tanýmlý þifrenizi sorgular.
+        login:
+    1.5. Sisteme Giriþ
+        login : nihattt
+        nihattt's password: *******
+        Last login: Mon Sep 13 02:50:32 2022 from 127.0.0.1
+        $ cal <== cal-endar, aylýk güncel takvim
+        September 2022
+        Su Mo Tu We Th Fr Sa
+                  1  2  3  4
+         5  6  7  8  9 10 11
+        12 13 14 15 16 17 18
+        19 20 21 22 23 24 25
+        26 27 28 29 30
+        $ <== Komut satýrý iletisi
+    1.6. Þifrenin Deðiþtirilmesi
+        $ passwd <== Þifreyi deðiþtir
+        Changing password for nihattt
+        (current) Unix password:*******
+        New UNIX password:**********
+        Retype new UNIX password:**********
+        passwd: all authentication tokens updated successfully
+        $
+    1.7. Dizin ve Dosyalarýn Listelenmesi
+        Dosya sistemi, dizin ve içerdiði dosya ve altdizinlerden oluþur.
+        $ ls -l <== Aktüel dizin içeriklerini yetkiler (drwx: directory/read/write/execute), kullanýcý, ebat, tarih ve dosyaadý'yla alt-alta listeler
+        total 19621
+        drwxrwxr-x 2 nihattt nihattt 4096 Dec 25 09:59 uml
+        -rw-rw-r-- 1 nihattt nihattt 5341 Dec 25 08:38 uml.jpg
+        drwxr-xr-x 2 nihattt nihattt 4096 Feb 15 2021 univ
+        drwxr-xr-x 2 root root 4096 Dec 9 2021 urlspedia
+        -rw-r--r-- 1 root root 276480 Dec 9 2021 urlspedia.tar
+        drwxr-xr-x 8 root root 4096 Nov 25 2021 usr
+        -rwxr-xr-x 1 root root 3192 Nov 25 2021 webthumb.php
+        -rw-rw-r-- 1 nihattt nihattt 20480 Nov 25 2021 webthumb.tar
+        -rw-rw-r-- 1 nihattt nihattt 5654 Aug 9 2022 dosyanýz.mid
+        -rw-rw-r-- 1 nihattt nihattt 166255 Aug 9 2022 dosyanýz.swf
+        $
+    1.8. Sen Kimsin?
+        $ whoami <== Aktüel sistem giriþi yapan (kullanýcý yada yönetici) kimdir? "who am i" ayrýk da sorulabilir
+        nihattt
+        $
+    1.9. Kimler Kayýtta?
+        Kimler sisteme girip hala kullanýmdalar, anlamak için "users", "who" ve "w" kullanýlabilir.
+        $ users
+        nihattt bilal kadir
+        $
+        $ who
+        nihat ttyp0 Sep 8 14:10 (limbo)
+        bilal ttyp2 Sep 4 09:08 (calliope)
+        kadir ttyp4 Sep 8 12:09 (dent)
+        $
+        $ w
+    1.10. Sistemden çýkýþ
+        Sistemden çýkýp, oturumunuzu kapamak, mevcut dosyalarýnýzýn (açýk kalmýþsa) kapatýlýp, terminal baðlantýsýný kesmek için "logout" kullanýlýr.
+        $ logout
+    1.11. Systemin kapatýlmasý
+        Bilgisayarýnýzý tamamen kapatmak yada kapat-aç için þu komutlardan birini kullanabilirsiniz: halt, init 0, poweroff, shutdown; init 6, reboot.
+2. Dosya Yönetimi
+    Dosyalar, dizin ve aðaç yapýlý dosya sistemi içinde bulunurlar. 3 çeþit dosya vardýr: normal dosya (metin yada kodlama), dizin (klasör), özel dosyalar (sürücü dosyalarý, alias baðlantýlar).
+    2.1. Dosyalarýn Listelenmesi
+        $ls <== Sadece mevcut dizindeki a-z dosya adlarýný kolonvari listeler
+        bin		hosts	lib	res.03
+        ch07		hw1	pub	test_results
+        ch07.bak	hw2	res.01	users
+        docs		hw3	res.02	work
+        $
+        $ls -l <== Herbir dizin/dosya adýný, detay bilgilerle, satýr-satýr listeler: Ýzinler (d:directory, b:block, c:character, l:link, p:pipe, s:socket, -:file, r:read, w:write, x:execute; ilk -/d sonrasý üçlü izin kullanýcý için, sonraki üçlü grup için, son üçlü de diðerleri içindir), bellek blok sayýsý, kullanýcý adý, grup adý, ebat-byte, tarih-zaman, dosya/dizin adý
+        total 1962188
+        drwxrwxr-x 2 nihattt nihattt 4096 Dec 25 09:59 uml
+        -rw-rw-r-- 1 nihattt nihattt 5341 Dec 25 08:38 uml.jpg
+        drwxr-xr-x 2 nihattt nihattt 4096 Feb 15 2022 univ
+        drwxr-xr-x 2 root root 4096 Dec 9 2021 urlspedia
+        -rw-r--r-- 1 root root 276480 Dec 9 2021 urlspedia.tar
+        drwxr-xr-x 8 root root 4096 Nov 25 2021 usr
+        drwxr-xr-x 2 200 300 4096 Nov 25 2021 webthumb-1.01
+        -rwxr-xr-x 1 root root 3192 Nov 25 2021 webthumb.php
+        -rw-rw-r-- 1 nihattt nihattt 20480 Nov 25 2021 webthumb.tar
+        -rw-rw-r-- 1 nihattt nihattt 5654 Aug 9 2022 yourfile.mid
+        -rw-rw-r-- 1 nihattt nihattt 166255 Aug 9 2022 yourfile.swf
+        drwxr-xr-x 11 nihattt nihattt 4096 May 29 2022 zlib-1.2.3
+        $
+    2.2. Metakarakterler
+        Daha ziyade RegEx gibi sorgulamalarda kullanýlan özel anlamlý "(, ), &, #, ?, *, . ve ;" gibi karakterlerdir.
+        $ls ch*.doc <== Aktüel dizindeki, ch baþlangýçlý, sonu .doc ve * yerine herhangibir yada çok karakterli dosyalar listelenir
+        ch01-1.doc	ch010.doc	ch02.doc	ch03-2.doc
+        ch04-1.doc	ch040.doc	ch05.doc	ch06-2.doc
+        ch01-2.doc	ch02-1.doc	c
+        $
+        $ls *.doc <== Uzantýsý .doc olan tüm dosyalar listelenir
+    2.3. Gizli Dosyalar
+        Önünde tek nokta bulunan, görünmez (genelde shell kurulum) dosyalardýr.
+        $ ls -a <== Tüm/all görünen ve görünmeyen (.dosya) dosyalarý listeler. Yegane . aktüel dizin, çift .. ise ebeveyn birüst dizin içindir
+        .	.profile	docs	lib	test_results
+        ..	.rhosts		hosts	pub	users
+        .emacs	bin		hw1	res.01	work
+        .exrc	ch07		hw2	res.02
+        .kshrc	ch07.bak	hw3	res.03
+    2.4. Dosya Yaratma
+        $ vi dosyaadý <== vi editörüyle önceden yaratýlan "dosyaadý"na girilir. i (input) ile editör kipine girilip, istenen düzenlemeler yapýlýr. Hareket için önce esc ile çýkýlýr; h: sola, l: saða, j: aþaðýya, k: yukarýya. Mevcut konumda tekrar düzenleme için i, saklayýp çýkmak içinse shift-zz basýlýr
+            Bu bir unix metin dosyasýdýr.... Bu dosyayý ilk kez yaratýyorum....
+            Dosyamý saklayýp çýkmak için esc ve shift-zz tuþlarýna basacaðým.
+    2.5. Dosya Düzenleme
+        $ vi dosyaadý <== Mevcut vi editörüyle "dosyaadý" metin dosyasý
+    2.6. Dosya Ýçeriklerini Gösterme
+        $ cat dosyaadý <== Dosya içeriklerini gösterir
+            Bu bir unix metin dosyasýdýr.... Bu dosyayý ilk kez yaratýyorum....
+            Dosyamý saklayýp çýkmak için esc ve shift-zz tuþlarýna basacaðým.
+        $
+        $ cat -b dosyaadý <== Dosya içeriklerini satýr-no'lu (-b) gösterir
+            1 Bu bir unix metin dosyasýdýr.... Bu dosyayý ilk kez yaratýyorum....
+            2 Dosyamý saklayýp çýkmak için esc ve shift-zz tuþlarýna basacaðým.
+    2.7. Dosyadaki Kelimelerin Sayýsý
+        $ wc dosyaadý <== Dosyadaki satýr, kelime (wc/WordCount/KelimeSayýsý) ve byte (karakter) sayýsýný gösterir
+        2 19 133 dosyaadý
+        $
+        $ wc dosyaadý1 dosyaadý2 dosyaadý3 <== Belirtilen üç dosyaadý sayýlarýný alt-alta gösterir
+    2.8. Dosyanýn Kopyalanmasý
+        $ cp kaynak hedef <== Kaynak dosyasýnýn hedef adlý kopyasýný (cp/CoPy/Kopya) üretir
+        $
+        $ cp dosyaadý kopyasureti
+    2.9. Dosyaadýnýn Deðiþtirilmesi
+        $ mv eskiad yeniad <== Eski dosyanýn adýný deðiþtirir (mv/MoVe/Taþý)
+        $
+        $ mv dosyaadý yeniad <== Artýk sadece "yeniad"lý dosya vardýr
+    2.10. Dosyanýn Silinmesi
+        $ rm dosyaadý <== Mevcut dosya silinir (rm/ReMove/Sil)
+        $
+        $ rm -i dosyaadý1 dosyaadý2 dosyaadý3 <== Üç dosyayý da ikazlý (i/Inform/Bildir) siler
+    2.11. Standart Unix Akýþlarý
+        Her baþlatýlan unix dosyasýnýn açýk üç standart akýþý da hazýrdýr: stdin/STDIN/0, stdout/STDOUT/1 ve stderr/STDERR/2
+3. Dizin Yönetimi
+    Dizin aðacý kök yumrudan (root node) itibaren tüm altdizinleri þekleder; yazýlýmda kök/ebeveyn/yavru_1../yavru_n olarak gösterilir. Her dizin dosya ve muhtemel altdizinler içerir.
+    3.1. Ana Dizin
+        Her kullanýcýnýn kendi oturumuna girdiði ilk dizindir. Dosyalama sistemi organizasyonu bu ve altdizinleriyle gerçekleþtirilir.
+        $ cd ~ <== Nerde olsanýz da ana dizine geçersiniz
+        $ cd ~kullanýcýadý <== Yöneticiyseniz, doðrudan her kullanýcýnýn anadizinine girersiniz
+        $ cd - <== Birönceki dizine geçersiniz
+    3.2. Mutlak/Göreceli Yoladlarý
+        Kök/Root dizinden itibarense (en baþýnda "/" varsa) mutlak, daha altdizinlerdense (baþýnda "/" yoksa) göreceli yoladý'dýr.
+        Birkaç mutlak yoladý:
+            /etc/passwd
+            /users/sjones/chem/notes
+            /dev/rdsk/Os3
+        Birkaç göreceli yoladý:
+            chem/notes
+            personal/res
+        $
+        $ pwd <== (print working directory) kökten itibaren dosyalama sisteminin neresinde olduðunuzu gösterir
+        /kullanýcý0/anasayfa/nihattt
+    3.3. Dizinlerin Listelenmesi
+        $ls dizinadý <== Doðrudan sadece o dizin içerklerini listeler
+        $
+        $ls /kullanýcý0/yerel <== Bu dizindeki þu dosyalar listelenir:
+        X11	bin	gimp	jikes	sbin
+        ace	doc	include	lib	share
+        atalk	etc	info	man	ami
+    3.4. Dizin Yaratma
+        $ mkdir dizinadý <== Mevcut dizin içinde bir altdizin yaratýr
+        $
+        $ mkdir /tmp/test-dir <== Kök altý mutlak yollu test-dir altdizinini yaratýr
+        $
+        $ mkdir docs pub <== Mevcut dizinde 2 altdizin yaratýr
+    3.5. Ebeveyn Dizinler Yaratma
+        $ mkdir /geçici/nihatt/test <== Ebeveyn dizinler "/tmp/nihatt" yoksa hata mesajý verir:
+        mkdir: Failed to make directory "/geçici/nihattt/test";
+        No such file or directory
+        $
+        $ mkdir -p /geçici/nihattt/test <== -p: Parent; mutlak yoldaki olmayan ebeveyn dizileri de yaratýr
+    3.6. Removing Directories
+    3.7. Changing Directories
+    3.8. Renaming Directories
+    3.9. The directories . (dot) and .. (dot dot)
+4. File Permission / Access Modes
+5. Environment
+6. Basic Utilities - Printing, Email
+7. Pipes and Filters
+8. Processes Management
+9. Network Communication Utilities
+10. The vi Editor Tutorial
+11. What is Shells?
+12. Using Shell Variables
+13. Special Variables
+14. Using Shell Arrays
+15. Shell Basic Operators
+16. Shell Decision Making
+17. Shell Loop Types
+18. Shell Loop Control
+19. Shell Substitution
+20. Shell Quoting Mechanisms
+21. Shell Input/Output Redirections
+22. Shell Functions
+23. Shell Manpage Help
+24. Regular Expressions with SED
+25. File System Basics
+26. User Administration
+27. System Performance
+28. System Logging
+29. Signals and Traps
